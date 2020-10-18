@@ -1,5 +1,6 @@
 package com.app.dao;
 
+import com.app.model.Registration;
 import com.app.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,9 +17,19 @@ public class UserDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    public void storeUser(Registration reg) {
+        jdbcTemplate.update("INSERT INTO users (username, password) VALUES (?, ?)",
+                reg.getUsername(), reg.getPassword());
+    }
+
     public List<User> getUsers() {
         RowMapper<User> rowMapper = (rs, rowNumber) -> mapUser(rs);
         return jdbcTemplate.query("SELECT * FROM users", rowMapper);
+    }
+
+    public List<User> getUsersByUsername(String username) {
+        RowMapper<User> rowMapper = (rs, rowNumber) -> mapUser(rs);
+        return jdbcTemplate.query("SELECT * FROM users WHERE username = ?", rowMapper, username);
     }
 
     private User mapUser(ResultSet rs) throws SQLException {
