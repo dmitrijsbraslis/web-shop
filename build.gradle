@@ -16,4 +16,5 @@ dependencies {
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.16'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '2.3.3.RELEASE'
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.springframework.security', name: 'spring-security-crypto', version: '5.4.1'
 }
