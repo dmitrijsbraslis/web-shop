@@ -18,8 +18,8 @@ public class UserDao {
     private JdbcTemplate jdbcTemplate;
 
     public void storeUser(Registration reg) {
-        jdbcTemplate.update("INSERT INTO users (username, password) VALUES (?, ?)",
-                reg.getUsername(), reg.getPassword());
+        jdbcTemplate.update("INSERT INTO users (username, password, birth_date) VALUES (?, ?, ?)",
+                reg.getUsername(), reg.getPassword(), reg.getBirthDate());
     }
 
     public List<User> getUsers() {

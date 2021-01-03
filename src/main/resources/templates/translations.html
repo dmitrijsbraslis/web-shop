@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title th:text="${lang['title']}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script th:href="@{js/main.js}"></script>
+</head>
+<body>
+    <div th:text="${lang['welcome']}"></div>
+    <div onClick="setLang('1');">LV</div>
+    <div onClick="setLang('2');">RU</div>
+    <div onClick="setLang('3');">EN</div>
+</body>
+</html>

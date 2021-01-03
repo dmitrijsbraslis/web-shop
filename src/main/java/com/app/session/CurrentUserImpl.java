@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 public class CurrentUserImpl implements CurrentUser {
     private Integer id;
     private String name;
+    private Integer langId;
 
     @Override
     public Integer getId() {
@@ -28,5 +29,15 @@ public class CurrentUserImpl implements CurrentUser {
     @Override
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public Integer getLangId() {
+        return langId;
+    }
+
+    @Override
+    public void setLangId(Integer langId) {
+        this.langId = langId;
     }
 }
