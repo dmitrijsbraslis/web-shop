@@ -23,7 +23,7 @@ public class LoginController {
     @Autowired
     CurrentUser currentUser;
 
-    @GetMapping("/logout")
+    @GetMapping("/logout_old")
     public String logoutUser(HttpSession session) {
         if (currentUser.getId() != null) {
             session.invalidate();

@@ -32,7 +32,7 @@ public class UserService {
     }
 
     public void storeUser(Registration reg) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         reg.setPassword(encoder.encode(reg.getPassword()));
 
         userDao.storeUser(reg);
