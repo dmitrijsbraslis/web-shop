@@ -23,7 +23,7 @@ public class LoginController {
     @Autowired
     CurrentUser currentUser;
 
-    @GetMapping("/logout")
+    @GetMapping("/oldlogout")
     public String logoutUser(HttpSession session) {
         if (currentUser.getId() != null) {
             session.invalidate();
@@ -42,18 +42,22 @@ public class LoginController {
     }
 
     @GetMapping("/translations")
-    public String getTranslationsPage(Model model) {
-        if (currentUser.getLangId() == null) {
-            currentUser.setLangId(1);
+    public String getTranslationsPage(HttpSession session, Model model) {
+
+        if (session.getAttribute("lang") == null) {
+            session.setAttribute("lang", 1);
         }
-        model.addAttribute("lang", langService.getTranslations(currentUser.getLangId(), "homePage"));
+
+        model.addAttribute("language", session.getAttribute("lang"));
+
+        model.addAttribute("lang", langService.getTranslations((int) session.getAttribute("lang"), "homePage"));
         return "translations";
     }
 
     @GetMapping("/setLang/{langId}")
     @ResponseBody
-    public void setLang(@PathVariable(value = "langId") int langId) {
-        currentUser.setLangId(langId);
+    public void setLang(@PathVariable(value = "langId") int langId, HttpSession session) {
+        session.setAttribute("lang", langId);
     }
 
     @PostMapping("/login")

@@ -1,7 +1,7 @@
 package com.app.dao;
 
 import com.app.model.Registration;
-import com.app.model.User;
+import com.app.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -22,24 +22,24 @@ public class UserDao {
                 reg.getUsername(), reg.getPassword(), reg.getBirthDate());
     }
 
-    public List<User> getUsers() {
-        RowMapper<User> rowMapper = (rs, rowNumber) -> mapUser(rs);
+    public List<Users> getUsers() {
+        RowMapper<Users> rowMapper = (rs, rowNumber) -> mapUser(rs);
         return jdbcTemplate.query("SELECT * FROM users", rowMapper);
     }
 
-    public List<User> getUsersByUsername(String username) {
-        RowMapper<User> rowMapper = (rs, rowNumber) -> mapUser(rs);
+    public List<Users> getUsersByUsername(String username) {
+        RowMapper<Users> rowMapper = (rs, rowNumber) -> mapUser(rs);
         return jdbcTemplate.query("SELECT * FROM users WHERE username = ?", rowMapper, username);
     }
 
-    private User mapUser(ResultSet rs) throws SQLException {
-        User user = new User();
+    private Users mapUser(ResultSet rs) throws SQLException {
+        Users users = new Users();
 
-        user.setId(rs.getInt("id"));
-        user.setEmail(rs.getString("email"));
-        user.setUsername(rs.getString("username"));
-        user.setPassword(rs.getString("password"));
+        users.setId(rs.getInt("id"));
+        users.setEmail(rs.getString("email"));
+        users.setUsername(rs.getString("username"));
+        users.setPassword(rs.getString("password"));
 
-        return user;
+        return users;
     }
 }

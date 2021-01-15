@@ -1,6 +1,7 @@
 package com.app.model;
 
-public class User {
+
+public class Users {
     private int id;
     private String email;
     private String username;

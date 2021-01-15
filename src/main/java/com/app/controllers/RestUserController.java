@@ -1,6 +1,6 @@
 package com.app.controllers;
 
-import com.app.model.User;
+import com.app.model.Users;
 import com.app.services.UserService;
 import com.app.session.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class RestUserController {
 
     @CrossOrigin
     @GetMapping("/getUsers")
-    public List<User> getUsers() {
+    public List<Users> getUsers() {
         return userService.getAllUsers();
     }
 
